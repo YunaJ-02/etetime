@@ -19,13 +19,13 @@ db = mydb = mysql.connector.connect(
 
 
 
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if session.get("user_id") is None:
-            return redirect("/login")
-        return f(*args, **kwargs)
-    return decorated_function
+# def login_required(f):
+#     @wraps(f)
+#     def decorated_function(*args, **kwargs):
+#         if session.get("user_id") is None:
+#             return redirect("/login")
+#         return f(*args, **kwargs)
+#     return decorated_function
 
 app = Flask(__name__)
 
@@ -41,44 +41,45 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-@app.route("/")
-@login_required
-def index():
-    #todo
-    #main page
-    return render_template("index.html")
+# @app.route("/")
+# @login_required
+# def index():
+#     #todo
+#     #main page
+#     return render_template("index.html")
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    session.clear()
-    #todo
+# @app.route("/login", methods=["GET", "POST"])
+# def login():
+#     session.clear()
+#     #todo
     
-    return render_template("login.html")
+#     return render_template("login.html")
 
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect("/")
+# @app.route("/logout")
+# def logout():
+#     session.clear()
+#     return redirect("/")
 
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    #todo
-    return render_template("register.html")
+# @app.route("/register", methods=["GET", "POST"])
+# def register():
+#     #todo
+#     return render_template("register.html")
 
 @app.route("/cert", methods=["GET", "POST"])
-@login_required
+# @login_required
 def cert():
     #todo
+    
     return render_template("cert.html")
 
-@app.route("/bord", methods=["GET", "POST"])
-@login_required
-def bord():
-    #todo
-    return render_template("bord.html")
+# @app.route("/bord", methods=["GET", "POST"])
+# @login_required
+# def bord():
+#     #todo
+#     return render_template("bord.html")
 
-@app.route("/mypage", methods=["GET", "POST"])
-@login_required
-def mypage():
-    #todo
-    return render_template("mypage.html")
+# @app.route("/mypage", methods=["GET", "POST"])
+# @login_required
+# def mypage():
+#     #todo
+#     return render_template("mypage.html")
